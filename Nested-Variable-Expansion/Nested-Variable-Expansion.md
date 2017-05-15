@@ -18,10 +18,7 @@ APP_NAME=${!APP_NAME_${ARCH}} # Error, but, we would want it to be Calc.exe
 The error `${!APP_NAME_${ARCH}}: bad substitution` occurs because Bash's indirection syntax expects everything following the exclamation point to be the variable name only. However, you can work around this limitation because Bash's indirection syntax works on argument variables (i.e. $1, $2, etc.) within a Bash function:
 
 ```bash
-function deref {
-  echo ${!1}
-}
-
+function deref { echo ${!1} ; }
 ARCH=X86
 APP_NAME_X86=Calc.exe
 deref APP_NAME_${ARCH} # Outputs: Calc.exe
@@ -30,6 +27,7 @@ deref APP_NAME_${ARCH} # Outputs: Calc.exe
 A cool thing about implementing Bash indirection as a function, is, you can call it nested manner to expand your variable as many times as you want:
 
 ```bash
+function deref { echo ${!1} ; }
 AA=BB
 BB=CC
 CC=Hello
