@@ -3,5 +3,4 @@
 function deref { echo ${!1} ; }
 ARCH=X86
 APP_NAME_X86=Calc.exe
-deref APP_NAME_${ARCH}
-
+deref APP_NAME_${ARCH} # Outputs: Calc.exe
