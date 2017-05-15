@@ -7,21 +7,30 @@ echo ${VARIABLE} # Outputs: aa
 echo ${!VARIABLE} # Outputs: bb
 ```
 
-Whilst already cool, we often want a deeper expansion, for example:
+Whilst already cool, we often want to expand an expression, for example:
 
 ```bash
-ARCH=X86
-APP_NAME_X86=Calc.exe
-APP_NAME=${!APP_NAME_${ARCH}} # Error, but, we would want it to be Calc.exe
+ANIMAL=CAT
+BABYCAT=KITTEN
+TMP=BABY${ANIMAL} # TMP=BABYCAT
+echo ${!TMP} # Outputs: KITTEN
 ```
 
-The error `${!APP_NAME_${ARCH}}: bad substitution` occurs because Bash's indirection syntax expects everything following the exclamation point to be the variable name only. However, you can work around this limitation because Bash's indirection syntax works on argument variables (i.e. $1, $2, etc.) within a Bash function:
+To do the Bash's indirection we needed to make use of a temporary variable. If we tried to do it in one line, we would encounter a bad substitution error:
+
+```bash
+ANIMAL=CAT
+BABYCAT=KITTEN
+echo ${!BABY${ANIMAL}} # Output: ${!BABY${ANIMAL}}: bad substitution
+```
+
+You can work around this limitation because Bash's indirection syntax works on argument variables (i.e. $1, $2, etc.) within a Bash function:
 
 ```bash
 function deref { echo ${!1} ; }
-ARCH=X86
-APP_NAME_X86=Calc.exe
-deref APP_NAME_${ARCH} # Outputs: Calc.exe
+ANIMAL=CAT
+BABYCAT=KITTEN
+deref BABY${ANIMAL} # Outputs: KITTEN
 ```
 
 A cool thing about implementing Bash indirection as a function, is, you can call it nested manner to expand your variable as many times as you want:
