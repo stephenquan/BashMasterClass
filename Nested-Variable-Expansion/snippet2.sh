@@ -2,5 +2,5 @@
 
 ANIMAL=CAT
 BABYCAT=KITTEN
-echo ${!BABY${ANIMAL}} # Output: line 5: ${!BABY${ANIMAL}}: bad substitution
+echo ${!BABY${ANIMAL}} # Outputs: line 5: ${!BABY${ANIMAL}}: bad substitution
 

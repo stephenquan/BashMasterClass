@@ -21,7 +21,7 @@ To do the Bash's indirection we needed to make use of a temporary variable. If w
 ```bash
 ANIMAL=CAT
 BABYCAT=KITTEN
-echo ${!BABY${ANIMAL}} # Output: ${!BABY${ANIMAL}}: bad substitution
+echo ${!BABY${ANIMAL}} # Outputs: ${!BABY${ANIMAL}}: bad substitution
 ```
 
 You can work around this limitation because Bash's indirection syntax works on argument variables (i.e. $1, $2, etc.) within a Bash function:
