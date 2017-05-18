@@ -1,6 +1,6 @@
 This article is about how to read ini files in Bash.
 
-For example, say we had `sample.ini` with:
+For example, let's assume we want to read the `blogger` key in the `Links` section in the following `sample.ini`:
 
 ```ini
 [Name]
@@ -21,13 +21,7 @@ cat sample.ini | awk '
 '
 ```
 
-reformats the output into:
-
-```ini
-[SECTION]NAME=VALUE
-```
-
-i.e.
+transforms `sample.ini` file into `[SECTION]NAME=VALUE` format:
 
 ```ini
 [Name]firstname=Stephen
@@ -36,16 +30,16 @@ i.e.
 [Links]blogger=http://bashmasterclass.blogspot.com.au/
 ```
 
-From here, we can easily use `grep` and `sed` to pluck out a value:
+Now, we can use `grep` and `sed` to lookup the `blogger` key in the `Links` section:
 
 ```bash
 section=Links
-name=blogger
+key=blogger
 
 value=$(cat sample.ini | awk '
 /^\[.*\]$/ { section=$0 }
 /=/ { print section $0 }
-' | grep '^\['$section'\]'$name'=' | sed 's/^[^=]*=//')
+' | grep '^\['$section'\]'$key'=' | sed 's/^[^=]*=//')
 
 echo $value # Outputs: http://bashmasterclass.blogspot.com.au/
 ```
