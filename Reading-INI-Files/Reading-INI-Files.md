@@ -33,8 +33,8 @@ transforms `sample.ini` file into `[SECTION]NAME=VALUE` format:
 Now, we can use `grep` and `sed` to lookup the `blogger` key in the `Links` section:
 
 ```bash
-section=Links
 key=blogger
+section=Links
 
 value=$(cat sample.ini | awk '
 /^\[.*\]$/ { section=$0 }
