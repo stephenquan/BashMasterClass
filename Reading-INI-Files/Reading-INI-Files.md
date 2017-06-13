@@ -15,7 +15,7 @@ blogger=http://bashmasterclass.blogspot.com.au/
 The following `awk` script:
 
 ```bash
-cat sample.ini | awk '
+cat sample.ini | tr -d '\r' | awk '
 /^\[.*\]$/ { section=$0 }
 /=/ { print section $0 }
 '
@@ -36,7 +36,7 @@ Now, we can use `grep` and `sed` to lookup the `blogger` key in the `Links` sect
 key=blogger
 section=Links
 
-value=$(cat sample.ini | awk '
+value=$(cat sample.ini | tr -d '\r' | awk '
 /^\[.*\]$/ { section=$0 }
 /=/ { print section $0 }
 ' | grep '^\['$section'\]'$key'=' | sed 's/^[^=]*=//')
