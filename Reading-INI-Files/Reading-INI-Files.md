@@ -1,6 +1,6 @@
 This article is about how to read ini files in Bash.
 
-Assume we want to read the `blogger` key from the `Links` section in the following `sample.ini` to get the value `http://bashmasterclass.blogspot.com.au/`:
+Assume we want to read the `blogger` key from the `Links` section in the following `sample.ini` to get the value [http://bashmasterclass.blogspot.com.au/](http://bashmasterclass.blogspot.com.au):
 
 ```ini
 [Name]
